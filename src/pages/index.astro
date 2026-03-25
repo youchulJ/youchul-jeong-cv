@@ -432,6 +432,8 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 				line-height: 1.6;
 				margin-bottom: 0;
 				font-size: 14px;
+				text-align: justify;
+				text-justify: inter-word;
 			}
 			
 			.main-wrapper .summary p a {
@@ -669,6 +671,13 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 				.main-wrapper {
 					padding: 20px;
 					order: 1;
+				}
+				
+				.main-wrapper .summary p {
+					text-align: justify;
+					text-justify: inter-word;
+					line-height: 1.7;
+					word-spacing: 0.05em;
 				}
 				
 				.sidebar-wrapper {
