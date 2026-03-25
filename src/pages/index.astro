@@ -644,23 +644,35 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 			@media (max-width: 991px) {
 				.wrapper {
 					background: #2D3748;
+					flex-direction: column;
 				}
 				
 				.sidebar-wrapper {
 					position: static;
 					width: 100%;
 					min-height: 0;
+					order: 2;
 				}
 				
 				.main-wrapper {
 					margin-right: 0;
 					padding: 30px;
+					order: 1;
 				}
 			}
 			
 			@media (max-width: 767px) {
+				.wrapper {
+					flex-direction: column;
+				}
+				
 				.main-wrapper {
 					padding: 20px;
+					order: 1;
+				}
+				
+				.sidebar-wrapper {
+					order: 2;
 				}
 				
 				.sidebar-wrapper .profile-container {
