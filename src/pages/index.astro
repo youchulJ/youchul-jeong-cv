@@ -474,10 +474,16 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 			}
 			
 			.main-wrapper .experience .meta {
-				color: #4299E1;
+				color: #E2E8F0;
 				font-weight: 600;
 				margin-bottom: 2px;
 				font-size: 13px;
+			}
+			
+			.main-wrapper .experience .journal {
+				color: #4299E1;
+				font-size: 12px;
+				margin-bottom: 2px;
 			}
 			
 			.main-wrapper .experience .time {
@@ -846,7 +852,8 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 											<h3 class="title">
 												<a href={pub.link} target="_blank">{pub.title}</a>
 											</h3>
-											<h4 class="meta">{pub.authors} - {pub.journal}</h4>
+											<h4 class="meta">{pub.authors}</h4>
+											<div class="journal">{pub.journal}</div>
 											<div class="time">{pub.month} {pub.year}</div>
 										</div><!--//item-->
 									</div><!--//experience-->
