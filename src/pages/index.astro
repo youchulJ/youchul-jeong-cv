@@ -1,17 +1,877 @@
 ---
+const cv = {
+  name: "Youchul Jeong",
+  title: "PhD Candidate in Marine Science",
+  email: "youchul@aegean.gr",
+  phone: "",
+  website: "",
+  linkedin: "youchulj",
+  github: "https://github.com/youchulJ",
+  researchgate: "https://www.researchgate.net/profile/Youchul-Jeong-2",
+  twitter: "",
+  about: "Youchul Jeong is a Ph.D. candidate in the Department of Marine Science at the University of the Aegean (Marine Remote Sensing Group - MRSG). He is dedicated to addressing global marine environmental challenges through advanced geospatial technologies, specializing in the analysis and visualization of satellite and UAV data.\n\nHis research focuses on developing a multi-scale detection framework for floating marine debris, integrating multi-sensor satellite data with high-resolution UAV imagery to provide actionable insights into plastic pollution. He holds both a Bachelor's and a Master of Science in Oceanography from Pusan National University in South Korea, where his early work established a foundation in multispectral sensing and deep learning for macro-litter monitoring.\n\nCurrently based in Lesbos, Greece, Youchul's academic mission extends beyond data collection; he aims to leverage remote sensing and image processing to develop scalable, real-world solutions for ocean conservation. His work seeks to bridge the gap between complex orbital observations and practical environmental management, driven by a deep commitment to protecting marine ecosystems and engaging with the global scientific community.",
+  experience: [
+    {
+      position: "Drone Analysis of Beach Safety and Beachgoer Behavior",
+      institution: "",
+      period: "Nov 2023, Feb - Aug 2024",
+      description: "Orchestrated drone flights and implemented the YOLOv8 algorithm to observe beach safety. Conducted surveys of beachgoer population to understand motivations and improve beach conditions."
+    },
+    {
+      position: "Classification and Monitoring of Floating Marine Macro Litter (MSc Thesis)",
+      institution: "",
+      period: "Jun 2022 - Dec 2023",
+      description: "Utilized drones with multispectral sensors to create a custom FMML dataset. Implemented deep learning models for efficient litter classification and continuous monitoring. Incorporated drone atmospheric correction using DROACOR in collaboration with Dr. Daniel Schläpfer (ReSe Application LLC). Worked with advisors to promote conceptual framework and fieldwork at international conferences."
+    },
+    {
+      position: "Floating Marine Debris and Physical Ocean Phenomena in S-ORS",
+      institution: "",
+      period: "April 2021 - Dec 2023",
+      description: "Applied drone technology and Applied Drone Automatic Flight Advisory in open ocean conditions. Developed a CNN model for detecting marine debris for Socheongcho Ocean Research Station."
+    },
+    {
+      position: "Drone Survey of Spotted seal Population on Baekryeong Island",
+      institution: "",
+      period: "May 2022 - Nov 2023",
+      description: "Conducted drone surveys to assess spotted seal population on Baekryeong Island and gather high-resolution imagery, contributing crucial data to understanding spotted seal dynamics."
+    },
+    {
+      position: "Floating Marine Litter, Korea Institute of Ocean Science & Technology",
+      institution: "",
+      period: "May 2023 - Oct 2023",
+      description: "Worked with Dr. Won Joon Shim (KIOST) to conduct on-site surveys of microplastics and floating marine litter. Compared and analyzed results of drone and multispectral sensor surveys."
+    },
+    {
+      position: "Coastal Topography and Seabed Survey",
+      institution: "",
+      period: "Jul 2023 - Aug 2023",
+      description: "Conducted RTK-GPS and drone surveys to analyze coastal sand loss and seabed depth change."
+    },
+    {
+      position: "UAV Team Leader, Korean Air Force",
+      institution: "",
+      period: "May 2016 - May 2018",
+      description: "Assembled military training UAVs, managed GPS element procurement, and led team activities."
+    }
+  ],
+  education: [
+    {
+      degree: "PhD in Marine Science",
+      institution: "University of the Aegean",
+      period: "2025 - Present"
+    },
+    {
+      degree: "MSc in Oceanography",
+      institution: "Pusan National University",
+      period: "2024"
+    },
+    {
+      degree: "BSc in Oceanography",
+      institution: "Pusan National University",
+      period: "2022"
+    }
+  ],
+  teaching: [
+    {
+      position: "Research Assistant",
+      institution: "Pusan National University",
+      period: "Fall 2022 / Fall 2023 - Spring 2024",
+      description: "Developed innovative methodologies including drones, AI, and multi-spectral sensors to contribute to published articles on remote sensing."
+    },
+    {
+      position: "Interpretation of marine data",
+      institution: "Pusan National University",
+      period: "Fall 2023",
+      description: "[Course No. MS3200990] Led fieldwork for 40 undergraduate students to acquire Sargassum multi-spectral images. Taught data processing using MATLAB as part of the project curriculum."
+    },
+    {
+      position: "Coastal Practices Survey",
+      institution: "Pusan National University",
+      period: "Spring 2022, Spring 2023",
+      description: "[Course No. MS3200295] Delivered theoretical lectures on YOLOv5, covering installation process and algorithms."
+    }
+  ],
+  publications: [
+    {
+      title: "A Study on Monitoring Floating Marine Macro-Litter using a Multi-Spectral Sensor and Classification based on Deep Learning",
+      journal: "Remote Sensing",
+      year: "2024",
+      month: "December",
+      link: "https://www.mdpi.com/2072-4292/16/23/4347"
+    },
+    {
+      title: "Decomposition of Submesoscale Ocean Wave and Current Derived from UAV-Based Observation",
+      journal: "Remote Sensing",
+      year: "2024",
+      month: "May",
+      link: "https://www.mdpi.com/2072-4292/16/13/2275"
+    }
+  ],
+  presentations: [],
+  skills: ["MATLAB", "Python", "Deep Learning", "Remote Sensing", "Marine Litter Detection", "UAV Operations"],
+  languages: ["Korean (Native)", "English (Proficient)", "Greek (Beginner)"]
+};
+
+function groupPublicationsByYear(publications) {
+  const grouped = {};
+  publications.forEach(pub => {
+    if (!grouped[pub.year]) {
+      grouped[pub.year] = [];
+    }
+    grouped[pub.year].push(pub);
+  });
+  // 연도별로 정렬 (최신 연도 먼저)
+  return Object.keys(grouped).sort((a, b) => b - a).map(year => ({
+    year,
+    publications: grouped[year].sort((a, b) => {
+      // 월별로 정렬 (December > May)
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                      'July', 'August', 'September', 'October', 'November', 'December'];
+      return months.indexOf(b.month) - months.indexOf(a.month);
+    })
+  }));
+}
+
+const groupedPublications = groupPublicationsByYear(cv.publications);
 
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{cv.name} - CV</title>
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Inter:400,500,600,700,800,900');
+			
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				background: #1A202C;
+				color: #E2E8F0;
+				font-family: 'Inter', sans-serif;
+				font-size: 14px;
+				line-height: 1.5;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			
+			h1, h2, h3, h4, h5, h6 {
+				font-weight: 700;
+			}
+			
+			a {
+				color: #4299E1;
+				text-decoration: none;
+			}
+			
+			a:hover {
+				text-decoration: underline;
+				color: #63B3ED;
+				transition: all 0.4s ease-in-out;
+			}
+			
+			p {
+				line-height: 1.5;
+			}
+			
+			.wrapper {
+				background: #2D3748;
+				max-width: 960px;
+				margin: 0 auto;
+				position: relative;
+				box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+				min-height: 100vh;
+				display: flex;
+			}
+			
+			.sidebar-wrapper {
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 280px;
+				height: 100%;
+				background: #2D3748;
+				color: #E2E8F0;
+				overflow-y: auto;
+			}
+			.sidebar-wrapper a {
+				color: #E2E8F0;
+			}
+			
+			.sidebar-wrapper .profile-container {
+				padding: 30px;
+				background: rgba(0, 0, 0, 0.3);
+				text-align: center;
+				color: #E2E8F0;
+			}
+			
+			.sidebar-wrapper .name {
+				font-size: 28px;
+				font-weight: 800;
+				margin-top: 0;
+				margin-bottom: 8px;
+			}
+			
+			.sidebar-wrapper .tagline {
+				color: rgba(226, 232, 240, 0.7);
+				font-size: 14px;
+				font-weight: 500;
+				margin-top: 0;
+				margin-bottom: 0;
+			}
+			
+			.sidebar-wrapper .profile {
+				margin-bottom: 15px;
+				width: 120px;
+				height: 120px;
+				border-radius: 50%;
+				border: 4px solid rgba(66, 153, 225, 0.3);
+				object-fit: cover;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+				transition: transform 0.3s ease, border-color 0.3s ease;
+			}
+			
+			.sidebar-wrapper .profile:hover {
+				transform: scale(1.05);
+				padding: 18px 18px;
+			}
+			
+			.sidebar-wrapper .container-block-title {
+				text-transform: uppercase;
+				font-size: 14px;
+				font-weight: 700;
+				margin-top: 0;
+				margin-bottom: 12px;
+				color: #E2E8F0;
+			}
+			
+			.sidebar-wrapper .container-block {
+				padding: 20px 25px;
+			}
+			
+			.sidebar-wrapper .item {
+				margin-bottom: 12px;
+			}
+			
+			.sidebar-wrapper .item:last-child {
+				margin-bottom: 0;
+			}
+			
+			.sidebar-wrapper .degree {
+				font-size: 13px;
+				font-weight: 700;
+				margin-bottom: 3px;
+			}
+			
+			.sidebar-wrapper .meta {
+				color: rgba(226, 232, 240, 0.8);
+				margin-bottom: 2px;
+				font-size: 12px;
+			}
+			
+			.sidebar-wrapper .time {
+				color: rgba(226, 232, 240, 0.6);
+				font-size: 11px;
+				margin-bottom: 0;
+			}
+			
+			.sidebar-wrapper .skills-list {
+				list-style: none;
+				padding: 0;
+			}
+			
+			.sidebar-wrapper .skills-list li {
+				margin-bottom: 6px;
+				font-size: 12px;
+			}
+			
+			.sidebar-wrapper .skills-list li:last-child {
+				margin-bottom: 0;
+			}
+			
+			.sidebar-wrapper .languages-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			
+			.sidebar-wrapper .languages-list li {
+				margin-bottom: 8px;
+				font-size: 12px;
+				color: #E2E8F0;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			
+			.sidebar-wrapper .languages-list li:last-child {
+				margin-bottom: 0;
+			}
+			
+			.sidebar-wrapper .languages-list .language-name {
+				font-weight: 500;
+			}
+			
+			.sidebar-wrapper .languages-list .language-level {
+				color: #4299E1;
+				font-weight: 600;
+			}
+			
+			.sidebar-wrapper .contact-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			
+			.sidebar-wrapper .contact-list li {
+				margin-bottom: 8px;
+				display: flex;
+				align-items: center;
+				flex-wrap: nowrap;
+				gap: 8px;
+			}
+			
+			.sidebar-wrapper .contact-list li:last-child {
+				margin-bottom: 0;
+			}
+			
+			.sidebar-wrapper .contact-list .icon {
+				flex-shrink: 0;
+				font-size: 18px;
+				width: 20px;
+				text-align: center;
+				line-height: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+			}
+			
+			.sidebar-wrapper .contact-list .text {
+				flex: 1;
+				min-width: 0;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				font-size: 13px;
+				font-family: inherit;
+				line-height: 1.4;
+			}
+			
+			.sidebar-wrapper .contact-list a {
+				color: #CBD5E0;
+				text-decoration: none;
+				font-size: 13px;
+				font-family: inherit;
+				line-height: 1.4;
+				transition: color 0.3s ease;
+			}
+			
+			.sidebar-wrapper .contact-list a:hover {
+				color: #4299E1;
+				text-decoration: none;
+			}
+			
+			.main-wrapper {
+				background: #1A202C;
+				padding: 40px 50px 40px 40px;
+				margin-right: 280px;
+				flex: 1;
+				min-height: 100vh;
+			}
+			
+			.main-wrapper .section {
+				margin-bottom: 25px;
+			}
+			
+			.main-wrapper .section:last-child {
+				margin-bottom: 0;
+			}
+			
+			.main-wrapper .section-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				cursor: pointer;
+				user-select: none;
+			}
+			
+			.main-wrapper .section-header:hover .section-title {
+				color: #4299E1;
+			}
+			
+			.main-wrapper .section-arrow {
+				font-size: 16px;
+				color: #718096;
+				transition: transform 0.3s ease;
+				transform: rotate(0deg);
+			}
+			
+			.main-wrapper .section-header.collapsed .section-arrow {
+				transform: rotate(-90deg);
+			}
+			
+			.main-wrapper .section-title {
+				text-transform: uppercase;
+				font-size: 18px;
+				font-weight: 600;
+				color: #E2E8F0;
+				margin-top: 0;
+				margin-bottom: 15px;
+				padding-bottom: 8px;
+				border-bottom: 1px solid #4A5568;
+			}
+			
+			.main-wrapper .summary p {
+				color: #E2E8F0;
+				line-height: 1.6;
+				margin-bottom: 0;
+				font-size: 14px;
+			}
+			
+			.main-wrapper .summary p a {
+				color: #4299E1;
+				text-decoration: none;
+				transition: color 0.3s ease;
+			}
+			
+			.main-wrapper .summary p a:hover {
+				color: #63B3ED;
+				text-decoration: underline;
+			}
+			
+			.main-wrapper .experience {
+				margin-bottom: 15px;
+				padding-bottom: 15px;
+				border-bottom: 1px solid #2D3748;
+			}
+			
+			.main-wrapper .experience:last-child {
+				border-bottom: none;
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+			
+			.main-wrapper .experience .item {
+				margin-bottom: 0;
+			}
+			
+			.main-wrapper .experience .title {
+				font-size: 15px;
+				font-weight: 600;
+				margin-top: 0;
+				margin-bottom: 3px;
+				color: #E2E8F0;
+			}
+			
+			.main-wrapper .experience .meta {
+				color: #4299E1;
+				font-weight: 600;
+				margin-bottom: 2px;
+				font-size: 13px;
+			}
+			
+			.main-wrapper .experience .time {
+				color: #718096;
+				margin-bottom: 8px;
+				font-size: 12px;
+			}
+			
+			.main-wrapper .experience .description {
+				color: #E2E8F0;
+				line-height: 1.5;
+				margin-bottom: 0;
+				font-size: 13px;
+			}
+			
+			.main-wrapper .experience .title a {
+				color: #E2E8F0;
+				text-decoration: none;
+				transition: color 0.3s ease;
+			}
+			
+			.main-wrapper .experience .title a:hover {
+				color: #4299E1;
+				text-decoration: none;
+			}
+			
+			.main-wrapper .year-group {
+				margin-bottom: 20px;
+			}
+			
+			.main-wrapper .year-group:last-child {
+				margin-bottom: 0;
+			}
+			
+			.main-wrapper .year-title {
+				font-size: 16px;
+				font-weight: 700;
+				color: #4299E1;
+				margin-bottom: 12px;
+				padding-bottom: 4px;
+				border-bottom: 1px solid #4A5568;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+			}
+			
+			.main-wrapper .teaching {
+				margin-bottom: 15px;
+				padding-bottom: 15px;
+				border-bottom: 1px solid #2D3748;
+			}
+			
+			.main-wrapper .teaching:last-child {
+				border-bottom: none;
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+			
+			.main-wrapper .teaching .item {
+				margin-bottom: 0;
+			}
+			
+			.main-wrapper .teaching .title {
+				font-size: 15px;
+				font-weight: 700;
+				margin-top: 0;
+				margin-bottom: 3px;
+				color: #E2E8F0;
+			}
+			
+			.main-wrapper .teaching .meta {
+				color: #4299E1;
+				font-weight: 600;
+				margin-bottom: 2px;
+				font-size: 13px;
+			}
+			
+			.main-wrapper .teaching .time {
+				color: #718096;
+				margin-bottom: 8px;
+				font-size: 12px;
+			}
+			
+			.main-wrapper .teaching .description {
+				color: #E2E8F0;
+				line-height: 1.5;
+				margin-bottom: 0;
+				font-size: 13px;
+			}
+			
+			.main-wrapper .projects-section {
+				margin-bottom: 25px;
+			}
+			
+			.main-wrapper .projects-section:last-child {
+				margin-bottom: 0;
+			}
+			
+			.main-wrapper .projects .item {
+				margin-bottom: 15px;
+				padding-bottom: 15px;
+				border-bottom: 1px solid #2D3748;
+			}
+			
+			.main-wrapper .projects .item:last-child {
+				border-bottom: none;
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+			
+			.main-wrapper .projects .title {
+				font-size: 15px;
+				font-weight: 700;
+				margin-top: 0;
+				margin-bottom: 3px;
+				line-height: 1.4;
+				color: #E2E8F0;
+			}
+			
+			.main-wrapper .projects .title a {
+				color: #E2E8F0;
+				text-decoration: none;
+				transition: color 0.3s ease;
+			}
+			
+			.main-wrapper .projects .title a:hover {
+				color: #4299E1;
+				text-decoration: none;
+			}
+			
+			.main-wrapper .projects .description {
+				color: #A0AEC0;
+				margin-bottom: 2px;
+				line-height: 1.4;
+				font-size: 12px;
+			}
+			
+			.main-wrapper .projects .description:last-child {
+				margin-bottom: 0;
+			}
+			
+			.main-wrapper .skill-item {
+				margin-bottom: 20px;
+			}
+			
+			.main-wrapper .skill-item .title {
+				font-size: 14px;
+				font-weight: 700;
+				color: #E2E8F0;
+				margin-bottom: 10px;
+			}
+			
+			.main-wrapper .skill-item .keywords {
+				color: #E2E8F0;
+			}
+			
+			.main-wrapper .languages-list {
+				margin-bottom: 0;
+			}
+			
+			.main-wrapper .languages-list li {
+				margin-bottom: 10px;
+			}
+			
+			.main-wrapper .languages-list li:last-child {
+				margin-bottom: 0;
+			}
+			
+			@media (max-width: 991px) {
+				.wrapper {
+					background: #2D3748;
+				}
+				
+				.sidebar-wrapper {
+					position: static;
+					width: 100%;
+					min-height: 0;
+				}
+				
+				.main-wrapper {
+					margin-right: 0;
+					padding: 30px;
+				}
+			}
+			
+			@media (max-width: 767px) {
+				.main-wrapper {
+					padding: 20px;
+				}
+				
+				.sidebar-wrapper .profile-container {
+					padding: 20px;
+				}
+				
+				.sidebar-wrapper .container-block {
+					padding: 20px 25px;
+				}
+			}
+		</style>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<div class="wrapper">
+			<div class="sidebar-wrapper">
+				<div class="profile-container">
+					<h1 class="name">{cv.name}</h1>
+					<h2 class="tagline">{cv.title}</h2>
+				</div><!--//profile-container-->
+				
+				<div class="contact-container container-block">
+					<ul class="contact-list">
+						{cv.email && (
+							<li class="contact-item">
+								<span class="icon">✉</span>
+								<a href={`mailto:${cv.email}`} class="text">{cv.email}</a>
+							</li>
+						)}
+						{cv.linkedin && (
+							<li class="contact-item">
+								<span class="icon">🔗</span>
+								<a href={`https://www.linkedin.com/in/${cv.linkedin}`} target="_blank" rel="noopener noreferrer" class="text">LinkedIn</a>
+							</li>
+						)}
+						{cv.github && (
+							<li class="contact-item">
+								<span class="icon">🐙</span>
+								<a href={cv.github} target="_blank" rel="noopener noreferrer" class="text">GitHub</a>
+							</li>
+						)}
+						{cv.researchgate && (
+							<li class="contact-item">
+								<span class="icon">🔬</span>
+								<a href={cv.researchgate} target="_blank" rel="noopener noreferrer" class="text">ResearchGate</a>
+							</li>
+						)}
+					</ul>
+				</div><!--//contact-container-->
+				
+				<div class="education-container container-block">
+					<h2 class="container-block-title">Education</h2>
+					{cv.education.map(item => (
+						<div class="item">
+							<h4 class="degree">{item.degree}</h4>
+							<h5 class="meta">{item.institution}</h5>
+							<div class="time">{item.period}</div>
+						</div>
+					))}
+				</div><!--//education-container-->
+				
+				<div class="skills-container container-block">
+					<h2 class="container-block-title">Technical Skills</h2>
+					<ul class="skills-list">
+						{cv.skills.map(skill => (
+							<li>{skill}</li>
+						))}
+					</ul>
+				</div>
+				
+				<div class="languages-container container-block">
+					<h2 class="container-block-title">Languages</h2>
+					<ul class="languages-list">
+						{cv.languages.map(lang => (
+							<li>
+								<span class="language-name">{lang.split('(')[0].trim()}</span>
+								<span class="language-level">{lang.match(/\(([^)]+)\)/)?.[1] || ''}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+			</div><!--//sidebar-wrapper-->
+			
+			<div class="main-wrapper">
+				<section class="section summary-section">
+					<h2 class="section-title">
+						<span class="icon-holder">👋</span>
+						Profile
+					</h2>
+					<div class="summary">
+						<p>Youchul Jeong is a Ph.D. candidate in the Department of Marine Science at the University of the Aegean (<a href="https://mrsg.aegean.gr/" target="_blank" rel="noopener noreferrer">Marine Remote Sensing Group - MRSG</a>), specializing in advanced geospatial technologies for marine environmental challenges. His research develops multi-scale detection frameworks for floating marine debris, integrating multi-sensor satellite data with high-resolution UAV imagery to provide actionable insights into plastic pollution. Currently based in Lesbos, Greece, he aims to leverage remote sensing and image processing to develop scalable solutions for ocean conservation, bridging the gap between orbital observations and practical environmental management.</p>
+					</div><!--//summary-->
+				</section><!--//section-->
+				
+				<section class="section experiences-section">
+					<div class="section-header" onclick="toggleMainSection('research')">
+						<h2 class="section-title">
+							<span class="icon-holder">🔬</span>
+							Research Experience
+						</h2>
+						<span class="section-arrow">▼</span>
+					</div>
+					<div id="research">
+						{cv.experience.map(item => (
+							<div class="experience">
+								<div class="item">
+									<h3 class="title">{item.position}</h3>
+									<h4 class="meta">{item.institution}</h4>
+									<div class="time">{item.period}</div>
+									<p class="description">{item.description}</p>
+								</div><!--//item-->
+							</div><!--//experience-->
+						))}
+					</div>
+				</section><!--//section-->
+				
+				<section class="section experiences-section">
+					<div class="section-header" onclick="toggleMainSection('teaching')">
+						<h2 class="section-title">
+							<span class="icon-holder">🎓</span>
+							Teaching Experience
+						</h2>
+						<span class="section-arrow">▼</span>
+					</div>
+					<div id="teaching">
+						{cv.teaching.map(item => (
+							<div class="teaching">
+								<div class="item">
+									<h3 class="title">{item.position}</h3>
+									<h4 class="meta">{item.institution}</h4>
+									<div class="time">{item.period}</div>
+									<p class="description">{item.description}</p>
+								</div><!--//item-->
+							</div><!--//teaching-->
+						))}
+					</div>
+				</section><!--//section-->
+				
+				<section class="section experiences-section">
+					<div class="section-header" onclick="toggleMainSection('publications')">
+						<h2 class="section-title">
+							<span class="icon-holder">📄</span>
+							Publications
+						</h2>
+						<span class="section-arrow">▼</span>
+					</div>
+					<div id="publications">
+						{groupedPublications.map(yearGroup => (
+							<div class="year-group">
+								<h3 class="year-title">{yearGroup.year}</h3>
+								{yearGroup.publications.map(pub => (
+									<div class="experience">
+										<div class="item">
+											<h3 class="title">
+												<a href={pub.link} target="_blank">{pub.title}</a>
+											</h3>
+											<h4 class="meta">{pub.journal}</h4>
+											<div class="time">{pub.month} {pub.year}</div>
+										</div><!--//item-->
+									</div><!--//experience-->
+								))}
+							</div><!--//year-group-->
+						))}
+					</div>
+				</section><!--//section-->
+			</div><!--//main-wrapper-->
+		</div>
+		
+		<script>
+			function toggleMainSection(sectionId) {
+				console.log('Toggle called for:', sectionId);
+				const content = document.getElementById(sectionId);
+				const header = content.previousElementSibling;
+				const arrow = header.querySelector('.section-arrow');
+				
+				console.log('Elements found:', !!content, !!header, !!arrow);
+				console.log('Current display:', content.style.display);
+				
+				if (content.style.display === 'none' || content.style.display === '') {
+					// 펼치기
+					content.style.display = 'block';
+					arrow.textContent = '▼';
+					header.classList.remove('collapsed');
+					console.log('Expanded to block');
+				} else {
+					// 접기
+					content.style.display = 'none';
+					arrow.textContent = '▶';
+					header.classList.add('collapsed');
+					console.log('Collapsed to none');
+				}
+			}
+			
+			// 이벤트 리스너로 onclick 대체 (모든 섹션)
+			document.addEventListener('DOMContentLoaded', function() {
+				console.log('DOM loaded, setting up event listeners...');
+				
+				const sections = ['research', 'teaching', 'publications'];
+				sections.forEach(sectionId => {
+					const header = document.querySelector(`[onclick="toggleMainSection('${sectionId}')"]`);
+					if (header) {
+						header.addEventListener('click', function(e) {
+							e.preventDefault();
+							console.log('Click event triggered for:', sectionId);
+							toggleMainSection(sectionId);
+						});
+						console.log('Event listener added for:', sectionId);
+					} else {
+						console.error('Header not found for:', sectionId);
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
