@@ -682,6 +682,13 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 					word-spacing: normal;
 				}
 				
+				.main-wrapper .experience .item p,
+				.main-wrapper .experience .item .description {
+					text-align: justify;
+					text-justify: inter-word;
+					line-height: 1.6;
+				}
+				
 				.sidebar-wrapper {
 					order: 2;
 				}
@@ -839,7 +846,7 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 											<h3 class="title">
 												<a href={pub.link} target="_blank">{pub.title}</a>
 											</h3>
-											<h4 class="meta">{pub.journal}</h4>
+											<h4 class="meta">{pub.authors} - {pub.journal}</h4>
 											<div class="time">{pub.month} {pub.year}</div>
 										</div><!--//item-->
 									</div><!--//experience-->
