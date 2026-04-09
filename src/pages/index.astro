@@ -75,7 +75,7 @@ const cv = {
     {
       position: "Research Assistant",
       institution: "Pusan National University",
-      period: "Fall 2022 / Fall 2023 - Spring 2024",
+      period: "Fall 2022 - Spring 2024",
       description: "Developed innovative methodologies including drones, AI, and multi-spectral sensors to contribute to published articles on remote sensing."
     },
     {
@@ -111,7 +111,21 @@ const cv = {
   ],
   presentations: [],
   skills: ["MATLAB", "Python", "Deep Learning", "Remote Sensing", "Marine Litter Detection", "UAV Operations"],
-  languages: ["Korean (Native)", "English (Proficient)", "Greek (Beginner)"]
+  languages: ["Korean (Native)", "English (Proficient)", "Greek (Beginner)"],
+  workingExperience: [
+    {
+      position: "Scientific Researcher",
+      institution: "Department of Marine Sciences, University of the Aegean",
+      period: "May 2025 - Oct 2025",
+      description: "Floating Marine Debris research work using drone and satellite imagery in the Marine Remote Sensing Group (MRSG)"
+    },
+    {
+      position: "Research Assistant",
+      institution: "Pusan National University, Marine Research Institute",
+      period: "Mar 2024 - Apr 2025",
+      description: "Conducting drone fieldwork and developing a deep learning model to detect marine debris in the ocean."
+    }
+  ]
 };
 
 function groupPublicationsByYear(publications) {
@@ -480,6 +494,16 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 				font-size: 13px;
 			}
 			
+			.main-wrapper .experience .meta .university {
+				color: #4299E1;
+				font-size: 13px;
+			}
+			
+			.main-wrapper .experience .meta .department {
+				color: #E2E8F0;
+				font-size: 13px;
+			}
+			
 			.main-wrapper .experience .journal {
 				color: #4299E1;
 				font-size: 12px;
@@ -547,7 +571,7 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 			
 			.main-wrapper .teaching .title {
 				font-size: 15px;
-				font-weight: 700;
+				font-weight: 600;
 				margin-top: 0;
 				margin-bottom: 3px;
 				color: #E2E8F0;
@@ -743,6 +767,10 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 								<a href={cv.researchgate} target="_blank" rel="noopener noreferrer" class="text">ResearchGate</a>
 							</li>
 						)}
+						<li class="contact-item">
+							<span class="icon">⭐</span>
+							<a href="/youchul-jeong-cv/Youchul%20Jeong%20CV.pdf" target="_blank" rel="noopener noreferrer" class="text">Youchul Jeong CV.pdf</a>
+						</li>
 					</ul>
 				</div><!--//contact-container-->
 				
@@ -788,6 +816,42 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 					<div class="summary">
 						<p>Youchul Jeong is a Ph.D. candidate in the Department of Marine Science at the University of the Aegean (<a href="https://mrsg.aegean.gr/" target="_blank" rel="noopener noreferrer">Marine Remote Sensing Group - MRSG</a>), specializing in advanced geospatial technologies for marine environmental challenges. His research develops multi-scale detection frameworks for floating marine debris, integrating multi-sensor satellite data with high-resolution UAV imagery to provide actionable insights into plastic pollution. Currently based in Lesbos, Greece, he aims to leverage remote sensing and image processing to develop scalable solutions for ocean conservation, bridging the gap between orbital observations and practical environmental management.</p>
 					</div><!--//summary-->
+				</section><!--//section-->
+				
+				<section class="section experiences-section">
+					<div class="section-header" onclick="toggleMainSection('working')">
+						<h2 class="section-title">
+							<span class="icon-holder">💼</span>
+							Working Experience
+						</h2>
+						<span class="section-arrow">▼</span>
+					</div>
+					<div id="working">
+						{cv.workingExperience.map(item => (
+							<div class="experience">
+								<div class="item">
+									<h3 class="title">{item.position}</h3>
+									<h4 class="meta">
+										{item.institution.includes('Pusan National University') ? (
+											<>
+												<div><span class="department">Marine Research Institute</span></div>
+												<div><span class="university">Pusan National University</span></div>
+											</>
+										) : item.institution.includes('University of the Aegean') ? (
+											<>
+												<div><span class="department">Department of Marine Science</span></div>
+												<div><span class="university">University of the Aegean</span></div>
+											</>
+										) : (
+											item.institution
+										)}
+									</h4>
+									<div class="time">{item.period}</div>
+									<p class="description">{item.description}</p>
+								</div><!--//item-->
+							</div><!--//experience-->
+						))}
+					</div>
 				</section><!--//section-->
 				
 				<section class="section experiences-section">
@@ -894,7 +958,7 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 			document.addEventListener('DOMContentLoaded', function() {
 				console.log('DOM loaded, setting up event listeners...');
 				
-				const sections = ['research', 'teaching', 'publications'];
+				const sections = ['working', 'research', 'teaching', 'publications'];
 				sections.forEach(sectionId => {
 					const header = document.querySelector(`[onclick="toggleMainSection('${sectionId}')"]`);
 					if (header) {
@@ -908,6 +972,19 @@ const groupedPublications = groupPublicationsByYear(cv.publications);
 						console.error('Header not found for:', sectionId);
 					}
 				});
+				
+				// Sidebar sections
+				const sidebarHeader = document.querySelector(`[onclick="toggleSidebarSection('sidebar-work')"]`);
+				if (sidebarHeader) {
+					sidebarHeader.addEventListener('click', function(e) {
+						e.preventDefault();
+						console.log('Sidebar click event triggered');
+						toggleSidebarSection('sidebar-work');
+					});
+					console.log('Sidebar event listener added');
+				} else {
+					console.error('Sidebar header not found');
+				}
 			});
 		</script>
 	</body>
